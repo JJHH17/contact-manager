@@ -1,6 +1,7 @@
 package userInterface;
 
 public class Contact {
+
     private String email;
     private String firstname;
     private String lastname;
@@ -13,5 +14,15 @@ public class Contact {
         this.telephone = telephone;
     }
 
+    public String getEmail() {
+        return email;
+    }
 
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public String getFullName() {
+        return this.firstname + " " + this.lastname;
+    }
 }
