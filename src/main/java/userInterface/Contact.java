@@ -5,9 +5,9 @@ public class Contact {
     private String email;
     private String firstname;
     private String lastname;
-    private String telephone;
+    private int telephone;
 
-    public Contact(String email, String firstname, String lastname, String telephone) {
+    public Contact(String email, String firstname, String lastname, int telephone) {
         this.email = email;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -18,7 +18,7 @@ public class Contact {
         return email;
     }
 
-    public String getTelephone() {
+    public int getTelephone() {
         return telephone;
     }
 
