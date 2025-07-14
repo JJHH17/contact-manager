@@ -10,7 +10,6 @@ public class Database {
     private String url;
     private String username;
     private String password;
-    private int id = 0;
 
     public void authenticate() {
         // Pulling from credential file
@@ -32,7 +31,7 @@ public class Database {
 
         // Creating an example call to create a table if it doesnt exist
         String sql = "CREATE TABLE IF NOT EXISTS contactManager (" +
-                "ID int PRIMARY KEY AUTO_INCREMENT, " +
+                "ID SERIAL PRIMARY KEY, " +
                 "Email varchar(50) NOT NULL, " +
                 "FirstName varchar(30) NOT NULL, " +
                 "LastName varchar(30) NOT NULL);";
@@ -49,6 +48,7 @@ public class Database {
             con.close();
         } catch (Exception e) {
             System.out.println("Error");
+            e.printStackTrace();
         }
     }
 
