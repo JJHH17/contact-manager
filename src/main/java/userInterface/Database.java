@@ -24,9 +24,9 @@ public class Database {
         }
 
         // Temporary credentials to test SQL connection
-        String url = props.getProperty("db.url");
-        String username = props.getProperty("db.username");
-        String password = props.getProperty("db.password");
+        this.url = props.getProperty("db.url");
+        this.username = props.getProperty("db.username");
+        this.password = props.getProperty("db.password");
     }
 
     public void createTable() {
@@ -40,7 +40,7 @@ public class Database {
 
         // Establishing a connection
         try {
-            Connection con = DriverManager.getConnection(url, username, password);
+            Connection con = DriverManager.getConnection(this.url, this.username, this.password);
             Statement st = con.createStatement();
             // Where we execute query
             st.execute(sql);
