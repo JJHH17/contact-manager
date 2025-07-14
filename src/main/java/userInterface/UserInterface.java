@@ -23,12 +23,20 @@ public class UserInterface {
         String username = props.getProperty("db.username");
         String password = props.getProperty("db.password");
 
+        // Creating an example call to create a table if it doesnt exist
+        String sql = "CREATE TABLE IF NOT EXISTS contactManager (" +
+                "id SERIAL PRIMARY KEY, " +
+                "email CHAR NOT NULL, " +
+                "firstname CHAR NOT NULL, " +
+                "lastname CHAR NOT NULL);";
+
         // Establishing a connection
         try {
             Connection con = DriverManager.getConnection(url, username, password);
             Statement st = con.createStatement();
             // Where we execute query
-            // st.executeQuery();
+            st.execute(sql);
+            System.out.println("Table created (if it didn't already exist!)");
 
             // Closing the connection is extremely important...
             con.close();
