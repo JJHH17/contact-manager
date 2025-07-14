@@ -11,6 +11,7 @@ public class Database {
     private String username;
     private String password;
 
+
     public void authenticate() {
         // Pulling from credential file
         Properties props = new Properties();
@@ -27,14 +28,15 @@ public class Database {
         this.password = props.getProperty("db.password");
     }
 
+
     public void createTable() {
 
-        // Creating an example call to create a table if it doesnt exist
         String sql = "CREATE TABLE IF NOT EXISTS contactManager (" +
                 "ID SERIAL PRIMARY KEY, " +
                 "Email varchar(50) NOT NULL, " +
                 "FirstName varchar(30) NOT NULL, " +
-                "LastName varchar(30) NOT NULL);";
+                "LastName varchar(30) NOT NULL, " +
+                "PhoneNumber integer NOT NULL);";
 
         // Establishing a connection
         try {
@@ -52,8 +54,9 @@ public class Database {
         }
     }
 
-    public void addUser(String email, String firstname, String lastname) {
-        String sql = "INSERT INTO contactManager (Email, FirstName, LastName) VALUES (?, ?, ?)";
+
+    public void addUser(String email, String firstname, String lastname, int phoneNumber) {
+        String sql = "INSERT INTO contactManager (Email, FirstName, LastName, PhoneNumber) VALUES (?, ?, ?, ?)";
 
         // Attempting to prevent SQL injection
         try (Connection con = DriverManager.getConnection(this.url, this.username, this.password);
@@ -62,6 +65,7 @@ public class Database {
             prep.setString(1, email);
             prep.setString(2, firstname);
             prep.setString(3, lastname);
+            prep.setInt(4, phoneNumber);
             prep.execute();
             System.out.println("Entry added successfully.");
 
