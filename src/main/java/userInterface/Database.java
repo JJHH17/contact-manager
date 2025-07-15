@@ -74,4 +74,26 @@ public class Database {
             e.printStackTrace();
         }
     }
+
+
+    public void deleteUser(String email) {
+        String sql = "DELETE FROM contactManager WHERE Email=(?)";
+
+        // Attempting to prevent injection
+        try (Connection con = DriverManager.getConnection(this.url, this.username, this.password);
+            PreparedStatement prep = con.prepareStatement(sql)) {
+
+            prep.setString(1, email);
+            int rowsDeleted = prep.executeUpdate();
+
+            if (rowsDeleted > 0) {
+                System.out.println("User deleted successfully!");
+            } else {
+                System.out.println("User not found with email address: " + email);
+            }
+        } catch (SQLException e) {
+            System.out.println("An error occurred when trying to delete.");
+            e.printStackTrace();
+        }
+    }
 }
