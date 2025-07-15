@@ -12,7 +12,6 @@ public class UserInterface {
         this.db.authenticate();
         this.db.createTable();
 
-        // TODO: Main loop to be placed into its own class and called into the main method
         while (true) {
             System.out.println("'quit' to exit program");
 
@@ -37,7 +36,6 @@ public class UserInterface {
                 System.out.println("Enter a telephone number (max 8 characters)");
                 // Parses to string initially then converted after (once we've checked exit criteria)
                 int telephoneNumber = Integer.parseInt(input.nextLine());
-                // TODO: Add data type validation here (when split into method)
 
                 this.addUser(emailAddress, firstName, lastName, telephoneNumber);
             }
@@ -87,7 +85,6 @@ public class UserInterface {
 
 
     public void addUser(String email, String firstname, String lastname, int phoneNumber) {
-        // TODO - Add check for duplicate items; rejects entry if they exist
 
         if (Integer.toString(phoneNumber).length() == 8) {
             Contact newUser = new Contact(email, firstname, lastname, phoneNumber);
