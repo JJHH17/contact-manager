@@ -117,4 +117,28 @@ public class Database {
             e.printStackTrace();
         }
     }
+
+    public void updateUser(String emailAddress, String updatedEmail, String firstname, String lastName, int telephoneNumber) {
+        String sql = "UPDATE contactManager SET Email = ?, FirstName = ?, LastName = ?, PhoneNumber = ? WHERE Email = ?;";
+
+        try (Connection con = DriverManager.getConnection(this.url, this.username, this.password);
+            PreparedStatement prep = con.prepareStatement(sql)) {
+
+            prep.setString(1, updatedEmail);
+            prep.setString(2, firstname);
+            prep.setString(3, lastName);
+            prep.setInt(4, telephoneNumber);
+            prep.setString(5, emailAddress); // Email in WHERE call
+            int rowsDeleted = prep.executeUpdate();
+
+            if (rowsDeleted > 0) {
+                System.out.println("User updated successfully!");
+            } else {
+                System.out.println("User not found with email address: " + emailAddress);
+            }
+        } catch (SQLException e) {
+            System.out.println("An error occurred when trying to update.");
+            e.printStackTrace();
+        }
+    }
 }
