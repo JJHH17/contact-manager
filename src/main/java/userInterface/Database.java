@@ -141,4 +141,25 @@ public class Database {
             e.printStackTrace();
         }
     }
+
+    public void returnUsers() {
+        String sql = "SELECT Email, FirstName, LastName, PhoneNumber FROM contactManager";
+
+        try (Connection con = DriverManager.getConnection(this.url, this.username, this.password);
+             PreparedStatement prep = con.prepareStatement(sql);
+             ResultSet results = prep.executeQuery()) {
+
+            while (results.next()) {
+                String email = results.getString("Email");
+                String firstName = results.getString("FirstName");
+                String lastName = results.getString("LastName");
+                int phoneNumber = results.getInt("PhoneNumber");
+
+                System.out.println("Email: " + email + ", Name: " + firstName + " " + lastName + ", Telephone Number: " + phoneNumber);
+            }
+        } catch (SQLException e) {
+            System.out.println("An error occurred when printing users.");
+            e.printStackTrace();
+        }
+    }
 }
