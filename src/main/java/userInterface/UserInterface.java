@@ -22,7 +22,7 @@ public class UserInterface {
         while (true) {
             System.out.println("'quit' to exit program");
 
-            System.out.println("'Add' to add a user \n'Delete email' to delete a user");
+            System.out.println("'Add' to add a user \n'Delete email' to delete a user with their email address\n'Delete name' to delete a user with their name");
             String choice = input.nextLine();
 
             if (choice.equalsIgnoreCase("quit")) {
@@ -53,6 +53,16 @@ public class UserInterface {
 
                 this.db.deleteUser(emailAddress);
             }
+
+            if (choice.equalsIgnoreCase("delete name")) {
+                System.out.println("Enter the user firstname");
+                String firstName = input.nextLine();
+
+                System.out.println("Enter the user lastname");
+                String lastName = input.nextLine();
+
+                this.db.deleteUser(firstName, lastName);
+            }
         }
         input.close();
     }
@@ -78,7 +88,9 @@ public class UserInterface {
 
 
     // Addition of deletion method (based on firstname + lastname)
-
+    public void deleteUser(String firstname, String lastname) {
+        this.db.deleteUser(firstname, lastname);
+    }
 
     // Addition of update method
 
