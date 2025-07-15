@@ -22,7 +22,8 @@ public class UserInterface {
         while (true) {
             System.out.println("'quit' to exit program");
 
-            System.out.println("'Add' to add a user \n'Delete email' to delete a user with their email address\n'Delete name' to delete a user with their name");
+            System.out.println("'Add' to add a user \n'Delete email' to delete a user with their email address\n'Delete name' to delete a user with their name \n" +
+                    "'Update user' to update a users details");
             String choice = input.nextLine();
 
             if (choice.equalsIgnoreCase("quit")) {
@@ -63,6 +64,25 @@ public class UserInterface {
 
                 this.db.deleteUser(firstName, lastName);
             }
+
+            if (choice.equalsIgnoreCase("update user")) {
+                System.out.println("Enter the email address of the user you wish to update");
+                String emailToUpdate = input.nextLine();
+
+                System.out.println("Enter the new email address");
+                String newEmailAddress = input.nextLine();
+
+                System.out.println("Enter the new first name");
+                String firstName = input.nextLine();
+
+                System.out.println("Enter the new last name");
+                String lastName = input.nextLine();
+
+                System.out.println("Enter the new telephone number");
+                int telephoneNumber = Integer.parseInt(input.nextLine());
+
+                this.db.updateUser(emailToUpdate, newEmailAddress, firstName, lastName, telephoneNumber);
+            }
         }
         input.close();
     }
@@ -93,6 +113,9 @@ public class UserInterface {
     }
 
     // Addition of update method
+    public void updateUser(String emailToUpdate, String newEmail, String firstName, String lastName, int telephoneNumber) {
+        this.db.updateUser(emailToUpdate, newEmail, firstName, lastName, telephoneNumber);
+    }
 
 
     // Print/fetch all users method
