@@ -70,4 +70,14 @@ public class UserInterface {
         }
     }
 
+    // Addition of deletion method (based on email)
+
+
+    // Addition of deletion method (based on firstname + lastname)
+
+
+    // Addition of update method
+
+
+    // Print/fetch all users method
 }
