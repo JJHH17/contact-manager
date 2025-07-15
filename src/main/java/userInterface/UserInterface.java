@@ -6,13 +6,6 @@ public class UserInterface {
 
     private Database db = new Database();
 
-
-    public static void main(String[] args) {
-        UserInterface ui = new UserInterface();
-        ui.start();
-    }
-
-
     public void start() {
         Scanner input = new Scanner(System.in);
         // Authentication and creation of Postgresql table
