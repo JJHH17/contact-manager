@@ -21,37 +21,38 @@ public class UserInterface {
 
         while (true) {
             System.out.println("'quit' to exit program");
-            System.out.println("Enter an email address");
-            String emailAddress = input.nextLine();
 
-            if (emailAddress.equalsIgnoreCase("quit")) {
+            System.out.println("'Add' to add a user \n'Delete email' to delete a user");
+            String choice = input.nextLine();
+
+            if (choice.equalsIgnoreCase("quit")) {
                 break;
             }
 
-            System.out.println("Enter a first name");
-            String firstName = input.nextLine();
+            if (choice.equalsIgnoreCase("add")) {
+                System.out.println("Enter an email address");
+                String emailAddress = input.nextLine();
 
-            if (firstName.equalsIgnoreCase("quit")) {
-                break;
+                System.out.println("Enter a first name");
+                String firstName = input.nextLine();
+
+                System.out.println("Enter an last name");
+                String lastName = input.nextLine();
+
+                System.out.println("Enter a telephone number (max 8 characters)");
+                // Parses to string initially then converted after (once we've checked exit criteria)
+                int telephoneNumber = Integer.parseInt(input.nextLine());
+                // TODO: Add data type validation here (when split into method)
+
+                this.addUser(emailAddress, firstName, lastName, telephoneNumber);
             }
 
-            System.out.println("Enter an last name");
-            String lastName = input.nextLine();
+            if (choice.equalsIgnoreCase("delete email")) {
+                System.out.println("Enter the email address of the user you wish to delete");
+                String emailAddress = input.nextLine();
 
-            if (lastName.equalsIgnoreCase("quit")) {
-                break;
+                this.db.deleteUser(emailAddress);
             }
-
-            System.out.println("Enter a telephone number (max 8 characters)");
-            // Parses to string initially then converted after (once we've checked exit criteria)
-            String telephoneNumber = input.nextLine();
-            // TODO: Add data type validation here (when split into method)
-
-            if (telephoneNumber.equalsIgnoreCase("quit")) {
-                break;
-            }
-
-            this.addUser(emailAddress, firstName, lastName, Integer.parseInt(telephoneNumber));
         }
         input.close();
     }
@@ -71,6 +72,9 @@ public class UserInterface {
     }
 
     // Addition of deletion method (based on email)
+    public void deleteUser(String email) {
+        this.db.deleteUser(email);
+    }
 
 
     // Addition of deletion method (based on firstname + lastname)
