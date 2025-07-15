@@ -19,11 +19,12 @@ public class UserInterface {
         this.db.authenticate();
         this.db.createTable();
 
+        // TODO: Main loop to be placed into its own class and called into the main method
         while (true) {
             System.out.println("'quit' to exit program");
 
-            System.out.println("'Add' to add a user \n'Delete email' to delete a user with their email address\n'Delete name' to delete a user with their name \n" +
-                    "'Update user' to update a users details");
+            System.out.println("\n'Add' to add a user \n'Delete email' to delete a user with their email address\n'Delete name' to delete a user with their name \n" +
+                    "'Update user' to update a users details \n'Print users' to print all users");
             String choice = input.nextLine();
 
             if (choice.equalsIgnoreCase("quit")) {
@@ -83,6 +84,10 @@ public class UserInterface {
 
                 this.db.updateUser(emailToUpdate, newEmailAddress, firstName, lastName, telephoneNumber);
             }
+
+            if (choice.equalsIgnoreCase("print users")) {
+                this.db.returnUsers();
+            }
         }
         input.close();
     }
@@ -116,7 +121,4 @@ public class UserInterface {
     public void updateUser(String emailToUpdate, String newEmail, String firstName, String lastName, int telephoneNumber) {
         this.db.updateUser(emailToUpdate, newEmail, firstName, lastName, telephoneNumber);
     }
-
-
-    // Print/fetch all users method
 }
