@@ -87,7 +87,6 @@ public class UserInterface {
     public void addUser(String email, String firstname, String lastname, int phoneNumber) {
 
         if (Integer.toString(phoneNumber).length() == 8) {
-            Contact newUser = new Contact(email, firstname, lastname, phoneNumber);
             // Adds to DB
             this.db.addUser(email, firstname, lastname, phoneNumber);
 
