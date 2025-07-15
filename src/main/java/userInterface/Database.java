@@ -96,4 +96,25 @@ public class Database {
             e.printStackTrace();
         }
     }
+
+    public void deleteUser(String firstname, String lastname) {
+        String sql = "DELETE FROM contactManager WHERE FirstName = ? AND LastName = ?;";
+
+        try (Connection con = DriverManager.getConnection(this.url, this.username, this.password);
+            PreparedStatement prep = con.prepareStatement(sql)) {
+
+            prep.setString(1, firstname);
+            prep.setString(2, lastname);
+            int rowsDeleted = prep.executeUpdate();
+
+            if (rowsDeleted > 0) {
+                System.out.println("User deleted successfully!");
+            } else {
+                System.out.println("User not found with name: " + firstname + " " + lastname);
+            }
+        } catch (SQLException e) {
+            System.out.println("An error occurred when trying to delete.");
+            e.printStackTrace();
+        }
+    }
 }
